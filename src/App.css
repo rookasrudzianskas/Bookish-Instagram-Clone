@@ -4,9 +4,13 @@
 
 .app {
   background-color: #fafafa;
+  height: 100vh;
 }
 
-.app_headerImage {
-  object-fit: contain;
+.app__header {
   background-color: white;
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
+  object-fit: contain;
+
 }
