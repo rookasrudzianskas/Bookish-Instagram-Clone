@@ -1,7 +1,7 @@
 import './App.css';
 import Post from "./Post";
 import {useEffect, useState} from "react";
-import {db} from "./firebase";
+import {db, auth} from "./firebase";
 import {makeStyles} from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import React from "react";
@@ -37,6 +37,24 @@ function App() {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+            if(authUser) {
+                // user has logged in
+                console.log(authUser);
+                setUser(authUser);
+            } else {
+                // user has logged out
+                setUser(null);
+            }
+        })
+        return () => {
+            // perform some cleanup actions before again
+            unsubscribe();
+        }
+    }, [user, username]);
 
     // Runs a piece of code, based on a specific condition
 
@@ -52,7 +70,15 @@ function App() {
     }, []);
 
     const signUp = (event) => {
+        event.preventDefault();
 
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((authUser) => {
+                return authUser.user.updateProfile({
+                    displayName: username
+                })
+            })
+            .catch((error) => alert(error.message));
     }
 
     return (
@@ -69,10 +95,10 @@ function App() {
                         <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" className="app__headerImage" alt=""/>
                     </center>
 
-                    <Input placeholder="text" type="username" value={username} onChange={(e) => setEmail(e.target.value)}/>
-                    <Input placeholder="text" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                    <Input placeholder="password" type="password" value={password} onChange={(e) => setEmail(e.target.value)}/>
-                    <Button onClick={signUp}>Sign Up</Button>
+                    <Input placeholder="username" type="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <Input placeholder="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <Input placeholder="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <Button type="submit" onClick={signUp}>Sign Up</Button>
 
                 </form>
 
