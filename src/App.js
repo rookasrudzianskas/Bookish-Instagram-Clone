@@ -130,15 +130,15 @@ function App() {
             <img className="app__headerImage" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt=""/>
         </div>
 
-        // ================== To show the sign up or log out button according to the user state ==============================================//
+        {/*// ================== To show the sign up or log out button according to the user state ==============================================//*/}
 
         {user ? (
-            <Button onClick={() => setOpen(true)}>Log Out</Button>
+            <Button onClick={() => auth.signOut()}>Log Out</Button>
         ):(
             <Button onClick={() => setOpen(true)}>Sign Up</Button>
         )}
 
-        // ================== End of To show the sign up or log out button according to the user state ==============================================//
+        {/*// ================== End of To show the sign up or log out button according to the user state ==============================================//*/}
 
 
         <h1>Hello, world! 🚀</h1>
