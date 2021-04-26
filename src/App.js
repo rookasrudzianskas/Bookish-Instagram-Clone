@@ -170,18 +170,21 @@ function App() {
 
         <div className="app__header">
             <img className="app__headerImage" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt=""/>
+
+            {user ? (
+                <Button onClick={() => auth.signOut()}>Log Out</Button>
+            ):(
+                <div className="app__loginContainer">
+                    <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+                    <Button onClick={() => setOpen(true)}>Sign Up</Button>
+                </div>
+            )}
+
         </div>
 
         {/*// ================== To show the sign up or log out button according to the user state ==============================================//*/}
 
-        {user ? (
-            <Button onClick={() => auth.signOut()}>Log Out</Button>
-        ):(
-            <div className="app__loginContainer">
-                <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-                <Button onClick={() => setOpen(true)}>Sign Up</Button>
-            </div>
-        )}
+
 
         {/*// ================== End of To show the sign up or log out button according to the user state ==============================================//*/}
 
