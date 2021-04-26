@@ -122,6 +122,11 @@ function App() {
     return (
     <div className="app">
 
+        {/* I want to havve ....*/}
+        {/* caption input */}
+        {/* file picker*/}
+        {/* post button*/}
+
         {/*// ================== 1st modal ==============================================//*/}
 
         <Modal
