@@ -186,6 +186,8 @@ function App() {
 
 
         <div className="app__posts">
+
+            {/* everythiig what goes to the left */}
             <div className="app__postLeft">
                 {
                     post.map(({id, post}) => (
@@ -193,8 +195,12 @@ function App() {
                     ))
                 }
             </div>
-            <div className="app__postRight">
 
+            {/* end of everything what goes to the left */}
+
+            {/* start of the right */}
+            <div className="app__postRight">
+                {/* instagram embed does not work for some reason */}
                 <InstagramEmbed
                     url='https://instagr.am/p/Zw9o4/'
                     clientAccessToken='123|456'
@@ -208,9 +214,12 @@ function App() {
                     onAfterRender={() => {}}
                     onFailure={() => {}}
                 />
+            {/*    end of does not work */}
 
 
             </div>
+
+        {/*     end of the elements on the right!   */}
 
         </div>
 
