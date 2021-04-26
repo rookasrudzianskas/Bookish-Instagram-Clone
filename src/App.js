@@ -191,7 +191,7 @@ function App() {
             <div className="app__postLeft">
                 {
                     post.map(({id, post}) => (
-                        <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
+                        <Post key={id} postId={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
                     ))
                 }
             </div>
@@ -201,19 +201,19 @@ function App() {
             {/* start of the right */}
             <div className="app__postRight">
                 {/* instagram embed does not work for some reason */}
-                <InstagramEmbed
-                    url='https://instagr.am/p/Zw9o4/'
-                    clientAccessToken='123|456'
-                    maxWidth={320}
-                    hideCaption={false}
-                    containerTagName='div'
-                    protocol=''
-                    injectScript
-                    onLoading={() => {}}
-                    onSuccess={() => {}}
-                    onAfterRender={() => {}}
-                    onFailure={() => {}}
-                />
+                {/*<InstagramEmbed*/}
+                {/*    url='https://instagr.am/p/Zw9o4/'*/}
+                {/*    clientAccessToken='123|456'*/}
+                {/*    maxWidth={320}*/}
+                {/*    hideCaption={false}*/}
+                {/*    containerTagName='div'*/}
+                {/*    protocol=''*/}
+                {/*    injectScript*/}
+                {/*    onLoading={() => {}}*/}
+                {/*    onSuccess={() => {}}*/}
+                {/*    onAfterRender={() => {}}*/}
+                {/*    onFailure={() => {}}*/}
+                {/*/>*/}
             {/*    end of does not work */}
 
 
