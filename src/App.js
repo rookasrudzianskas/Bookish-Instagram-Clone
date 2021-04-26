@@ -6,6 +6,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import React from "react";
 import {Button, Input} from "@material-ui/core";
+import ImageUpload from "./ImageUpload";
 
 
 
@@ -122,11 +123,7 @@ function App() {
     return (
     <div className="app">
 
-        {/* I want to havve ....*/}
-        {/* caption input */}
-        {/* file picker*/}
-        {/* post button*/}
-
+    <ImageUpload />
         {/*// ================== 1st modal ==============================================//*/}
 
         <Modal
