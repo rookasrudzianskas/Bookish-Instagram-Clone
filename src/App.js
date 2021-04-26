@@ -49,6 +49,7 @@ function App() {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [user, setUser] = useState(null);
+    const [openSignIn, setOpenSignIn] = useState(false);
 
     // ================== End of States ==============================================//
 
@@ -105,9 +106,21 @@ function App() {
 
     // ================== End of Sign Up form ==============================================//
 
+    // ==================  Sign In form ==============================================//
+
+
+    const signIn = (event) => {
+        event.preventDefault();
+
+    }
+
+    // ==================  End of Sign In form ==============================================//
 
     return (
     <div className="app">
+
+        {/*// ================== 1st modal ==============================================//*/}
+
         <Modal
             open={open}
             onClose={() => setOpen(false)}>
@@ -126,6 +139,30 @@ function App() {
 
             </div>
         </Modal>
+
+        {/*// ================== end of 1st modal ==============================================//*/}
+
+        {/*// ================== 2nd modal ==============================================//*/}
+
+        <Modal
+            open={openSignIn}
+            onClose={() => openSignIn(false)}>
+            <div style={modalStyle} className={classes.paper}>
+                <form className="app__signup">
+                    <center>
+                        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" className="app__headerImage" alt=""/>
+                    </center>
+                    <Input placeholder="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <Input placeholder="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <Button type="submit" onClick={signIn}>Sign In</Button>
+
+                </form>
+
+            </div>
+        </Modal>
+
+        {/*// ================== end of 2nd modal ==============================================//*/}
+
         <div className="app__header">
             <img className="app__headerImage" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt=""/>
         </div>
@@ -135,7 +172,10 @@ function App() {
         {user ? (
             <Button onClick={() => auth.signOut()}>Log Out</Button>
         ):(
-            <Button onClick={() => setOpen(true)}>Sign Up</Button>
+            <div className="app__loginContainer">
+                <Button onClick={() => setOpen(true)}>Sign In</Button>
+                <Button onClick={() => setOpen(true)}>Sign Up</Button>
+            </div>
         )}
 
         {/*// ================== End of To show the sign up or log out button according to the user state ==============================================//*/}
