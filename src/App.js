@@ -122,8 +122,12 @@ function App() {
 
     return (
     <div className="app">
+        {user?.displayName ? (
+            <ImageUpload username={user.displayName}/>
+        ): (
+            <h3>Sorry you need to login, to upload something</h3>
+        )}
 
-    <ImageUpload />
         {/*// ================== 1st modal ==============================================//*/}
 
         <Modal
