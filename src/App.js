@@ -7,6 +7,8 @@ import Modal from "@material-ui/core/Modal";
 import React from "react";
 import {Button, Input} from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
+import InstagramEmbed from 'react-instagram-embed';
+
 
 
 
@@ -182,19 +184,43 @@ function App() {
 
         </div>
 
-        {/*// ================== To show the sign up or log out button according to the user state ==============================================//*/}
+
+        <div className="app__posts">
+            <div className="app__postLeft">
+                {
+                    post.map(({id, post}) => (
+                        <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
+                    ))
+                }
+            </div>
+            <div className="app__postRight">
+
+                <InstagramEmbed
+                    url='https://instagr.am/p/Zw9o4/'
+                    clientAccessToken='123|456'
+                    maxWidth={320}
+                    hideCaption={false}
+                    containerTagName='div'
+                    protocol=''
+                    injectScript
+                    onLoading={() => {}}
+                    onSuccess={() => {}}
+                    onAfterRender={() => {}}
+                    onFailure={() => {}}
+                />
+
+
+            </div>
+
+        </div>
+
+        {/*// ================== Instagram embed ==============================================//*/}
+
+
+        {/*// ================== End of instagram embed ==============================================//*/}
 
 
 
-        {/*// ================== End of To show the sign up or log out button according to the user state ==============================================//*/}
-
-
-        <h1>Hello, world! 🚀</h1>
-        {
-            post.map(({id, post}) => (
-                <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
-            ))
-        }
 
     {/*     Post    */}
     {/*     Post    */}
