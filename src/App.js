@@ -122,11 +122,7 @@ function App() {
 
     return (
     <div className="app">
-        {user?.displayName ? (
-            <ImageUpload username={user.displayName}/>
-        ): (
-            <h3>Sorry you need to login, to upload something</h3>
-        )}
+
 
         {/*// ================== 1st modal ==============================================//*/}
 
@@ -199,6 +195,12 @@ function App() {
 
     {/*     Post    */}
     {/*     Post    */}
+
+        {user?.displayName ? (
+            <ImageUpload username={user.displayName}/>
+        ): (
+            <h3>Sorry you need to login, to upload something</h3>
+        )}
     </div>
   );
 }

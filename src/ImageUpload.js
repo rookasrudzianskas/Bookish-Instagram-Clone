@@ -47,7 +47,10 @@ const ImageUpload = ({username}) => {
                             caption: caption,
                             imageUrl: url,
                             username: username,
-                        })
+                        });
+                        setProgress(0);
+                        setCaption("");
+                        setImage(null);
                     })
             }
         )
@@ -58,8 +61,8 @@ const ImageUpload = ({username}) => {
 
     return (
         <div>
-            <h1>abc</h1>
 
+            <progress value={progress} max="100" />
             <input type="text" placeholder="Enter a caption..." onChange={event => setCaption(event.target.value)} value={caption}/>
             <input type="file" onChange={handleChange}/>
             <Button onClick={handleUpload}>
