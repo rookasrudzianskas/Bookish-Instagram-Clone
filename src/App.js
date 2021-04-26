@@ -7,6 +7,10 @@ import Modal from "@material-ui/core/Modal";
 import React from "react";
 import {Button, Input} from "@material-ui/core";
 
+
+
+// ================== Modal Style ==============================================//
+
 function getModalStyle() {
     const top = 50;
     const left = 50;
@@ -29,7 +33,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+// ================== End of Modal Style ==============================================//
+
+// ================== Main App ==============================================//
+
 function App() {
+
+    // ================== States ==============================================//
+
     const [modalStyle] = React.useState(getModalStyle);
     const [post, setPosts] = useState([]);
     const [open, setOpen] = useState(false);
@@ -38,6 +49,10 @@ function App() {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [user, setUser] = useState(null);
+
+    // ================== End of States ==============================================//
+
+    // ================== Use Effect for Auth off ==============================================//
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -54,10 +69,13 @@ function App() {
             // perform some cleanup actions before again
             unsubscribe();
         }
+
     }, [user, username]);
 
-    // Runs a piece of code, based on a specific condition
+    // ================== End of Use Effect for Auth off ==============================================//
 
+    // ================== Get posts from firebase ==============================================//
+    // Runs a piece of code, based on a specific condition
     useEffect(() => {
         // this is where the code runs
         db.collection('posts').onSnapshot(snapshot => {
@@ -68,6 +86,10 @@ function App() {
         })
 
     }, []);
+
+    // ================== End of Get posts from firebase ==============================================//
+
+    // ================== Sign Up form ==============================================//
 
     const signUp = (event) => {
         event.preventDefault();
@@ -81,16 +103,16 @@ function App() {
             .catch((error) => alert(error.message));
     }
 
+    // ================== End of Sign Up form ==============================================//
+
+
     return (
     <div className="app">
-
-
         <Modal
             open={open}
             onClose={() => setOpen(false)}>
             <div style={modalStyle} className={classes.paper}>
                 <form className="app__signup">
-
                     <center>
                         <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" className="app__headerImage" alt=""/>
                     </center>
@@ -104,17 +126,21 @@ function App() {
 
             </div>
         </Modal>
-
-
         <div className="app__header">
             <img className="app__headerImage" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt=""/>
         </div>
 
+        // ================== To show the sign up or log out button according to the user state ==============================================//
+
         {user ? (
-            <Button onClick={}></Button>
+            <Button onClick={() => setOpen(true)}>Log Out</Button>
+        ):(
+            <Button onClick={() => setOpen(true)}>Sign Up</Button>
         )}
 
-        <Button onClick={() => setOpen(true)}>Sign Up</Button>
+        // ================== End of To show the sign up or log out button according to the user state ==============================================//
+
+
         <h1>Hello, world! 🚀</h1>
         {
             post.map(({id, post}) => (
